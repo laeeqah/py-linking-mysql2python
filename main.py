@@ -13,7 +13,7 @@ def  verify():
     passs = pass_word_entry.get()
     sql = "select * from Login where username = %s and password = %s"
     mycursor.execute(sql, [(user), (passs)])
-    results = mycursor.fetchall() #fetches all the data(shortcut)
+    results = mycursor.fetchall() #fetches all the data
     if results:
         window.withdraw()
 
@@ -29,10 +29,10 @@ def logged():
     window2 = Tk()
     window2.title("Logged in")
     window2.geometry("450x450")
-    infolb = Label(window2, text = "")
-    infolb.place(x = 20, y = 20)
-    countlb = Label(window2, text = "")
-    countlb.place(x = 80, y = 100)
+    infolb = Label(window2, text = "") #info label
+    infolb.pack()
+    countlb = Label(window2, text = "") #count label
+    countlb.pack()
     mydb = mysql.connector.connect(user ="lifechoices", password = "@Lifechoices1234",
                                host = "localhost", database = "hospital",
                                auth_plugin = "mysql_native_password")
@@ -43,12 +43,14 @@ def logged():
     for i in mycursor:
         print(i)
         mydata = str(i)
-        infolb['text'] += "\n" + mydata
+        infolb['text'] += "Username" + "\n" + mydata + "\n"
 
 
-    secsql = mycursor.execute("select count(*) from Login ")
+    thirdsql = mycursor.execute("select count(*) from Login ") #This will count how many data there is in the table
     for i in mycursor:
         print(i)
+        mycount = str(i)[1:-2]
+        countlb['text'] += "This how many logins there are" + "\n" + mycount
 
 
 
