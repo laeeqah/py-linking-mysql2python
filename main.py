@@ -39,14 +39,14 @@ def logged():
 
     mycursor = mydb.cursor()
 
-    secsql = mycursor.execute("select * from Login ") #This will make the data appear on the next interface
+    secsql = mycursor.execute("select * from patients") #This will make the data appear on the next interface
     for i in mycursor:
         print(i)
         mydata = str(i)
-        infolb['text'] += "Username" + "\n" + mydata + "\n"
+        infolb['text'] += "patient" + "\n" + mydata + "\n"
 
 
-    thirdsql = mycursor.execute("select count(*) from Login ") #This will count how many data there is in the table
+    thirdsql = mycursor.execute("select count(*) from patients ") #This will count how many data there is in the table
     for i in mycursor:
         print(i)
         mycount = str(i)[1:-2]
@@ -79,12 +79,14 @@ pass_word_entry = Entry(window)
 pass_word_entry.place(x = 200, y = 60)
 
 # The Buttons
-login_btn = Button(window, text = "Login", command = verify)
-login_btn.place(x = 150, y = 150, width = "55")
+login_btn = Button(window, text = "Login", width = "10", command = verify)
+login_btn.place(x = 100, y = 150)
 login_btn.configure(background = "pink")
 
-# register_user = Button(window, text = "Register")
-# register_user.place(x = 250, y = 150)
+register_user = Button(window, text = "Register", width = "10")
+register_user.place(x = 250, y = 150)
+register_user.configure(background = "pink")
+
 window.mainloop()
 
 
